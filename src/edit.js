@@ -1,38 +1,31 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
+import { useBlockProps } from "@wordpress/block-editor";
+import "./editor.scss";
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
-import { useBlockProps } from '@wordpress/block-editor';
+import shoe from './shoe.png';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
 export default function Edit() {
 	return (
-		<p {...useBlockProps()}>
-			{__('Sp Product – hello from the editor!', 'sp-product')}
-		</p>
+		<div {...useBlockProps()}>
+			<div className="wrapper">
+				<div className="card">
+					<div className="arivalDate">Arived in Dec 27</div>
+					<div className="imageArea">
+						<img src={shoe} alt="" />
+					</div>
+					<div className="discount">59% Off</div>
+					<div className="productName">Men's Annapolis Desert Lather Chukka</div>
+					<div className="itemPrice">
+						<span>$94 </span>$50
+					</div>
+					<div className="colorCercle">
+						<span className="cercle"></span>
+						<span className="cercle red"></span>
+						<span className="cercle green"></span>
+						<span className="cercle blue"></span>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }

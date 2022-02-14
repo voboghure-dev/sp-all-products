@@ -1,1 +1,61 @@
-.wp-block-create-block-sp-product{border:1px dotted red}
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px solid darkgrey;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+.card .itemPrice {
+  margin-bottom: 15px;
+}
+.card .itemPrice span {
+  color: darkgray;
+}
+.card .productName {
+  font-weight: 800;
+  padding: 7px 0;
+}
+.card .discount {
+  color: coral;
+  font-weight: 800;
+}
+.card .arivalDate {
+  position: absolute;
+  left: 85px;
+  color: burlywood;
+  font-weight: 700;
+}
+.card .colorCercle .cercle {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  border-radius: 100%;
+}
+.card .colorCercle .cercle.red {
+  background-color: red;
+}
+.card .colorCercle .cercle.geen {
+  background-color: green;
+}
+.card .colorCercle .cercle.blue {
+  background-color: blue;
+}
+.card .imageArea img {
+  width: 80%;
+}
+
+/*# sourceMappingURL=index.css.map*/
