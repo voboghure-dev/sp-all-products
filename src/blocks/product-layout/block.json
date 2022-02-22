@@ -4,7 +4,7 @@
 	"name": "store-press/sp-all-products",
 	"version": "1.0.0",
 	"title": "SP All Products",
-	"category": "store-press-blocks",
+	"category": "sp-block-category",
 	"icon": "layout",
 	"description": "All products layout for StorePress.",
 	"supports": {
@@ -25,7 +25,7 @@
 		}
 	},
 	"textdomain": "sp-all-products",
-	"editorScript": "file:../../build/product-layout.js",
-	"editorStyle": "file:../../build/product-layout.css",
-	"style": "file:../../build/style-product-layout.css"
+	"editorScript": "file:../../../build/product-layout.js",
+	"editorStyle": "file:../../../build/product-layout.css",
+	"style": "file:../../../build/style-product-layout.css"
 }

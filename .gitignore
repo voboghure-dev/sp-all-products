@@ -32,5 +32,6 @@ node_modules/
 #MAC files
 .DS_Store
 
-# Remove lock.json file
+# Custom ignore
 package-lock.json
+build/
