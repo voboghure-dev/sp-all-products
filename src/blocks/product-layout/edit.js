@@ -5,6 +5,7 @@ import {
 	PanelColorSettings,
 	RichText,
 	useBlockProps,
+	BlockControls,
 } from "@wordpress/block-editor";
 import {
 	Panel,
@@ -13,7 +14,10 @@ import {
 	ToggleControl,
 	SelectControl,
 	RangeControl,
+	ToolbarButton,
 } from "@wordpress/components";
+import { edit } from "@wordpress/icons";
+
 import "./editor.scss";
 
 import shoe from "./shoe.png";
@@ -76,7 +80,16 @@ export default function Edit({ attributes, setAttributes }) {
 					</PanelColorSettings> */}
 				</Panel>
 			</InspectorControls>
+
 			<div {...useBlockProps()}>
+				<BlockControls>
+					<ToolbarButton
+						icon={edit}
+						label="Edit"
+						onClick={() => alert("Editing")}
+					/>
+				</BlockControls>
+
 				<div className="wrapper">
 					<div className="card">
 						<div className="arivalDate">Arived in Dec 27</div>
