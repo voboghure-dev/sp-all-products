@@ -14,48 +14,93 @@
  * @package           create-block
  */
 
-function store_press_sp_all_products_block_init()
-{
-	$blocks = array(
-		'product-layout/',
-	);
+function store_press_sp_all_products_block_init() {
+  $blocks = [
+    'product-layout',
+  ];
 
-	foreach ($blocks as $block) {
-		register_block_type(plugin_dir_path(__FILE__) . 'src/blocks/' . $block);
-	}
+  foreach ( $blocks as $block ) {
+    // log_it( $block );
+    if ( $block == 'product-layout' ) {
+      register_block_type(
+        plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block,
+        ['render_callback' => 'render_callback_product_layout']
+      );
+    } else {
+      register_block_type( plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block );
+    }
+  }
 }
-add_action('init', 'store_press_sp_all_products_block_init');
+
+add_action( 'init', 'store_press_sp_all_products_block_init' );
 
 /**
  * Create custom category
  */
-function store_press_block_categories($block_categories)
-{
-	return array_merge(
-		$block_categories,
-		[
-			[
-				'slug'  => 'sp-block-category',
-				'title' => __('StorePress Blocks', 'sp-all-products'),
-			],
-		]
-	);
+function store_press_block_categories( $block_categories ) {
+  return array_merge(
+    $block_categories,
+    [
+      [
+        'slug'  => 'sp-block-category',
+        'title' => __( 'StorePress Blocks', 'sp-all-products' ),
+      ],
+    ]
+  );
 }
-add_filter('block_categories_all', 'store_press_block_categories');
+
+add_filter( 'block_categories_all', 'store_press_block_categories' );
 
 /**
- * Log function to view any data in wp-content/debug.log
- * uses: log_it($variable);
+ * Render callback for product layout
  */
-if (!function_exists('log_it')) {
-	function log_it($message)
-	{
-		if (WP_DEBUG === true) {
-			if (is_array($message) || is_object($message)) {
-				error_log("\r\n" . print_r($message, true));
-			} else {
-				error_log($message);
-			}
-		}
-	}
+function render_callback_product_layout( $attributes, $content ) {
+  // Get external products.
+  $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
+  log_it($limit);
+  $args = [
+    // 'type'  => 'product',
+    'limit' => $limit,
+    'order' => 'DESC',
+  ];
+  $products = wc_get_products( $args );
+	log_it($products);
+  ob_start();
+	echo '<div className="wrapper">';
+  foreach ( $products as $product ) {
+		echo '<div className="card">';
+
+		echo '<div className="productName">';
+    echo $product->get_name();
+    echo '</div>';
+
+    echo '<div className="imageArea">';
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'bundle_image'] );
+    echo '</div>';
+
+		echo '<div className="itemPrice">';
+		echo $product->get_price();
+		echo '</div>';
+
+    echo '</div>';
+  }
+	echo '</div>';
+  // log_it($attributes);
+  return ob_get_clean();
+}
+
+/**
+ * Debug log function to view any data in wp-content/debug.log
+ * Uses: log_it($variable);
+ */
+if ( ! function_exists( 'log_it' ) ) {
+  function log_it( $message ) {
+    if ( WP_DEBUG === true ) {
+      if ( is_array( $message ) || is_object( $message ) ) {
+        error_log( "\r\n" . print_r( $message, true ) );
+      } else {
+        error_log( $message );
+      }
+    }
+  }
 }

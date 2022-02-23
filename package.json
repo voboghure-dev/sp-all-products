@@ -18,6 +18,7 @@
 		"@wordpress/scripts": "^21.0.1"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^6.3.0"
+		"@wordpress/icons": "^6.3.0",
+		"@wordpress/server-side-render": "^3.1.1"
 	}
 }

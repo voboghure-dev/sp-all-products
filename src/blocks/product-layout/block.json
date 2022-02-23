@@ -13,11 +13,11 @@
 	"attributes": {
 		"gridColumns": {
 			"type": "number",
-			"default": 1
+			"default": 2
 		},
 		"gridRows": {
 			"type": "number",
-			"default": 1
+			"default": 2
 		},
 		"gridGap": {
 			"type": "number",

@@ -1,8 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import {
-	ContrastChecker,
 	InspectorControls,
-	PanelColorSettings,
 	RichText,
 	useBlockProps,
 	BlockControls,
@@ -17,6 +15,7 @@ import {
 	ToolbarButton,
 } from "@wordpress/components";
 import { edit } from "@wordpress/icons";
+import ServerSideRender from "@wordpress/server-side-render";
 
 import "./editor.scss";
 
@@ -38,14 +37,14 @@ export default function Edit({ attributes, setAttributes }) {
 							value={gridColumns}
 							onChange={(gridColumns) => setAttributes({ gridColumns })}
 							min={1}
-							max={12}
+							max={8}
 						/>
 						<RangeControl
 							label="Rows"
 							value={gridRows}
 							onChange={(gridRows) => setAttributes({ gridRows })}
 							min={1}
-							max={10}
+							max={8}
 						/>
 						<TextControl
 							label={__("Column spacing", "sp-all-products")}
@@ -54,30 +53,6 @@ export default function Edit({ attributes, setAttributes }) {
 							value={gridGap}
 						/>
 					</PanelBody>
-					{/* <PanelColorSettings
-						title={__("Color Settings", "sp-all-products")}
-						icon="art"
-						initialOpen={false}
-						colorSettings={[
-							{
-								value: blockColor,
-								onChange: (blockColor) => setAttributes({ blockColor }),
-								label: __("Font Color", "sp-all-products"),
-							},
-							{
-								value: blockBackground,
-								onChange: (blockBackground) =>
-									setAttributes({ blockBackground }),
-								label: __("Background Color", "sp-all-products"),
-							},
-						]}
-					>
-						<ContrastChecker
-							isLargeText="false"
-							textColor={blockColor}
-							backgroundColor={blockBackground}
-						/>
-					</PanelColorSettings> */}
 				</Panel>
 			</InspectorControls>
 
@@ -86,31 +61,16 @@ export default function Edit({ attributes, setAttributes }) {
 					<ToolbarButton
 						icon={edit}
 						label="Edit"
-						onClick={() => alert("Editing")}
+						onClick={() =>
+							alert("It will hide layout view and open single product view")
+						}
 					/>
 				</BlockControls>
 
-				<div className="wrapper">
-					<div className="card">
-						<div className="arivalDate">Arived in Dec 27</div>
-						<div className="imageArea">
-							<img src={shoe} alt="" />
-						</div>
-						<div className="discount">59% Off</div>
-						<div className="productName">
-							Men's Annapolis Desert Lather Chukka
-						</div>
-						<div className="itemPrice">
-							<span>$94 </span>$50
-						</div>
-						<div className="colorCercle">
-							<span className="cercle"></span>
-							<span className="cercle red"></span>
-							<span className="cercle green"></span>
-							<span className="cercle blue"></span>
-						</div>
-					</div>
-				</div>
+				<ServerSideRender
+					block="store-press/sp-all-products"
+					attributes={attributes}
+				/>
 			</div>
 		</>
 	);
