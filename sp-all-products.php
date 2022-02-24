@@ -57,14 +57,14 @@ add_filter( 'block_categories_all', 'store_press_block_categories' );
 function render_callback_product_layout( $attributes, $content ) {
   // Get external products.
   $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
-  log_it($limit);
+  // log_it($limit);
   $args = [
     // 'type'  => 'product',
     'limit' => $limit,
     'order' => 'DESC',
   ];
   $products = wc_get_products( $args );
-	log_it($products);
+	// log_it($products);
   ob_start();
 	echo '<div className="wrapper">';
   foreach ( $products as $product ) {

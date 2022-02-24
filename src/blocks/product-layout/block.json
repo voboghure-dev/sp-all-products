@@ -22,6 +22,14 @@
 		"gridGap": {
 			"type": "number",
 			"default": 10
+		},
+		"productCategories": {
+			"type": "string",
+			"default": ""
+		},
+		"productOffset": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"textdomain": "sp-all-products",

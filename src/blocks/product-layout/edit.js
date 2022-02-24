@@ -13,8 +13,9 @@ import {
 	SelectControl,
 	RangeControl,
 	ToolbarButton,
+	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
-import { useEffect } from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element";
 import { edit } from "@wordpress/icons";
 import ServerSideRender from "@wordpress/server-side-render";
 
@@ -23,21 +24,32 @@ import "./editor.scss";
 // import shoe from "./shoe.png";
 
 export default function Edit({ attributes, setAttributes }) {
-	const { gridColumns, gridRows, gridGap } = attributes;
+	const { gridColumns, gridRows, gridGap, productCategories, productOffset } =
+		attributes;
+	const [categories, setCategories] = useState(null);
+
+	const apiFetch = wp.apiFetch;
+	const { addQueryArgs } = wp.url;
 
 	useEffect(() => {
-		setAttributes({ gridColumns, gridRows, gridGap });
-		console.log(gridColumns, gridRows, gridGap);
+		apiFetch({
+			path: addQueryArgs(`wc/store/products/categories`),
+		}).then((result) => {
+			let data = result.map((item) => ({
+				value: item.id,
+				label: item.name,
+			}));
+			setCategories(data);
+		});
 	}, []);
+
+	// console.log(categories);
 
 	return (
 		<>
 			<InspectorControls>
 				<Panel>
-					<PanelBody
-						title={__("Column & Row", "sp-all-products")}
-						icon="grid-view"
-					>
+					<PanelBody title={__("Layout Settings", "sp-all-products")}>
 						<RangeControl
 							label="Columns"
 							value={gridColumns}
@@ -52,11 +64,64 @@ export default function Edit({ attributes, setAttributes }) {
 							min={1}
 							max={8}
 						/>
-						<TextControl
+						<NumberControl
 							label={__("Column spacing", "sp-all-products")}
-							help={__("Write only number without px.", "sp-all-products")}
 							onChange={(gridGap) => setAttributes({ gridGap })}
 							value={gridGap}
+						/>
+					</PanelBody>
+					<PanelBody title={__("Product Settings", "sp-all-products")}>
+						<SelectControl
+							multiple
+							label={__("Category", "sp-all-products")}
+							// value={gridRows}
+							onChange={(productCategories) =>
+								setAttributes({ productCategories })
+							}
+							options={categories}
+						/>
+						<NumberControl
+							label={__("Offset", "sp-all-products")}
+							onChange={(productOffset) => setAttributes({ productOffset })}
+							value={productOffset}
+						/>
+						<SelectControl
+							label={__("Order by", "sp-all-products")}
+							// value={gridRows}
+							onChange={(productCategories) =>
+								setAttributes({ productCategories })
+							}
+							options={[
+								{
+									value: "id",
+									label: "ID",
+								},
+								{
+									value: "title",
+									label: "Title",
+								},
+								{
+									value: "name",
+									label: "Name",
+								},
+							]}
+						/>
+						<SelectControl
+							label={__("Order", "sp-all-products")}
+							// value={gridRows}
+							onChange={(productCategories) =>
+								setAttributes({ productCategories })
+							}
+							options={[
+								{
+									value: "ASC",
+									label: "ASC",
+								},
+								{
+									value: "DESC",
+									label: "DESC",
+								},
+							]}
 						/>
 					</PanelBody>
 				</Panel>
