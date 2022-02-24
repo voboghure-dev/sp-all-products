@@ -21,7 +21,7 @@
 		},
 		"gridGap": {
 			"type": "number",
-			"default": 1
+			"default": 10
 		}
 	},
 	"textdomain": "sp-all-products",

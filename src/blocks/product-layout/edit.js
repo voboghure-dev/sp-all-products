@@ -14,15 +14,21 @@ import {
 	RangeControl,
 	ToolbarButton,
 } from "@wordpress/components";
+import { useEffect } from "@wordpress/element";
 import { edit } from "@wordpress/icons";
 import ServerSideRender from "@wordpress/server-side-render";
 
 import "./editor.scss";
 
-import shoe from "./shoe.png";
+// import shoe from "./shoe.png";
 
 export default function Edit({ attributes, setAttributes }) {
 	const { gridColumns, gridRows, gridGap } = attributes;
+
+	useEffect(() => {
+		setAttributes({ gridColumns, gridRows, gridGap });
+		console.log(gridColumns, gridRows, gridGap);
+	}, []);
 
 	return (
 		<>
