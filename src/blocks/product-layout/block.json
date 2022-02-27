@@ -25,11 +25,19 @@
 		},
 		"productCategories": {
 			"type": "string",
-			"default": ""
+			"default": null
 		},
 		"productOffset": {
 			"type": "number",
 			"default": 0
+		},
+		"orderBy": {
+			"type": "string",
+			"default": ""
+		},
+		"order": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "sp-all-products",

@@ -1,3 +1,7 @@
+// For import third party react component
+import React from "react";
+import Select from "react-select";
+
 import { __ } from "@wordpress/i18n";
 import {
 	InspectorControls,
@@ -21,11 +25,16 @@ import ServerSideRender from "@wordpress/server-side-render";
 
 import "./editor.scss";
 
-// import shoe from "./shoe.png";
-
 export default function Edit({ attributes, setAttributes }) {
-	const { gridColumns, gridRows, gridGap, productCategories, productOffset } =
-		attributes;
+	const {
+		gridColumns,
+		gridRows,
+		gridGap,
+		productCategories,
+		productOffset,
+		orderBy,
+		order,
+	} = attributes;
 	const [categories, setCategories] = useState(null);
 
 	const apiFetch = wp.apiFetch;
@@ -71,14 +80,14 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</PanelBody>
 					<PanelBody title={__("Product Settings", "sp-all-products")}>
-						<SelectControl
-							multiple
-							label={__("Category", "sp-all-products")}
-							// value={gridRows}
-							onChange={(productCategories) =>
-								setAttributes({ productCategories })
-							}
+						<Select
+							value={productCategories ? JSON.parse(productCategories) : ""}
+							onChange={(productCategories) => {
+								let data = JSON.stringify(productCategories);
+								setAttributes({ productCategories: data });
+							}}
 							options={categories}
+							isMulti="true"
 						/>
 						<NumberControl
 							label={__("Offset", "sp-all-products")}
@@ -87,10 +96,8 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 						<SelectControl
 							label={__("Order by", "sp-all-products")}
-							// value={gridRows}
-							onChange={(productCategories) =>
-								setAttributes({ productCategories })
-							}
+							value={orderBy}
+							onChange={(orderBy) => setAttributes({ orderBy })}
 							options={[
 								{
 									value: "id",
@@ -108,10 +115,8 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 						<SelectControl
 							label={__("Order", "sp-all-products")}
-							// value={gridRows}
-							onChange={(productCategories) =>
-								setAttributes({ productCategories })
-							}
+							value={order}
+							onChange={(order) => setAttributes({ order })}
 							options={[
 								{
 									value: "ASC",
