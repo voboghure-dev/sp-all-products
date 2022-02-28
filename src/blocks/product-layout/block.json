@@ -11,6 +11,10 @@
 		"html": false
 	},
 	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": ""
+		},
 		"gridColumns": {
 			"type": "number",
 			"default": 2
