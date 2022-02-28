@@ -64,27 +64,36 @@ function render_callback_product_layout( $attributes, $content ) {
     'order' => 'DESC',
   ];
   $products = wc_get_products( $args );
-	// log_it($products);
+  // log_it($products);
   ob_start();
-	echo '<div className="wrapper">';
+  echo '<style> :root { --item-size: ' . (int) $attributes['gridColumns'] . '; }</style>';
+  echo '<div class="container">';
+  echo '<ul class="products">';
   foreach ( $products as $product ) {
-		echo '<div className="card">';
+    echo '<li class="products__item">';
 
-		echo '<div className="productName">';
+    echo '<h3 class="product-title">';
     echo $product->get_name();
-    echo '</div>';
+    echo '</h3>';
 
-    echo '<div className="imageArea">';
+    echo '<div class="product-img">';
     echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'bundle_image'] );
     echo '</div>';
 
-		echo '<div className="itemPrice">';
-		echo $product->get_price();
-		echo '</div>';
+    echo '<p>';
+    echo $product->get_short_description();
+    echo '</p>';
 
-    echo '</div>';
+    echo '<h3 class="product-price">';
+    echo $product->get_price();
+    echo '</h3>';
+
+    echo '<div class="add-to-card"><a href="#">Add to Card</a></div>';
+
+    echo '</li>';
   }
-	echo '</div>';
+  echo '</ul>';
+  echo '</div>';
   // log_it($attributes);
   return ob_get_clean();
 }

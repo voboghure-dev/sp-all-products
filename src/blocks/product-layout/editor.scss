@@ -1,59 +1,49 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.wrapper {
-	width: 300px;
-	margin: 0 auto;
-	//   border: 1px solid red;
-}
-.card {
-	border: 1px solid darkgrey;
-	padding: 20px;
-	text-align: center;
-	position: relative;
-	.itemPrice {
-		margin-bottom: 15px;
-		span {
-			color: darkgray;
-		}
-	}
-	.productName {
-		font-weight: 800;
-		padding: 7px 0;
-	}
-	.discount {
-		color: coral;
-		font-weight: 800;
-	}
-	.arivalDate {
-		position: absolute;
-		left: 85px;
-		color: burlywood;
-		font-weight: 700;
-	}
-	.colorCercle {
-		.cercle {
-			display: inline-block;
-			width: 15px;
-			height: 15px;
-			background-color: rgb(0, 0, 0);
-			border-radius: 100%;
-			&.red {
-				background-color: red;
-			}
-			&.geen {
-				background-color: green;
-			}
-			&.blue {
-				background-color: blue;
-			}
-		}
-	}
-	.imageArea {
-		img {
-			width: 80%;
-		}
-	}
+// :root {
+//   --item-size: 4;
+// }
+$border-color: lightblue;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  .products {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(var(--item-size), 1fr);
+    grid-gap: 10px;
+    &__item {
+      padding: 20px;
+      text-align: center;
+      border: 1px solid $border-color;
+      .product-title {
+        color: coral;
+      }
+      .product-price {
+        padding-block: 15px;
+      }
+      .product-img {
+        img {
+          width: 70%;
+        }
+      }
+      .add-to-card {
+        a {
+          display: inline-block;
+          padding: 10px 20px;
+          text-decoration: none;
+          background-color: coral;
+          color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background-color: darkgoldenrod;
+          }
+        }
+      }
+    }
+  }
 }
