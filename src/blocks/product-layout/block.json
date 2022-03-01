@@ -35,13 +35,37 @@
 			"type": "number",
 			"default": 0
 		},
-		"orderBy": {
+		"productOrderBy": {
 			"type": "string",
 			"default": ""
 		},
-		"order": {
+		"productOrder": {
 			"type": "string",
 			"default": ""
+		},
+		"toggleOnSale": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"togglePrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleAddToCart": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "sp-all-products",

@@ -33,10 +33,17 @@ export default function Edit({ attributes, setAttributes }) {
 		gridGap,
 		productCategories,
 		productOffset,
-		orderBy,
-		order,
+		productOrderBy,
+		productOrder,
+		toggleOnSale,
+		toggleCategory,
+		toggleTitle,
+		toggleRating,
+		togglePrice,
+		toggleAddToCart,
 	} = attributes;
 	const [categories, setCategories] = useState(null);
+	const [onSale, setOnSale] = useState(toggleOnSale);
 
 	const apiFetch = wp.apiFetch;
 	const { addQueryArgs } = wp.url;
@@ -106,6 +113,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 							options={categories}
 							isMulti="true"
+							menuPortalTarget={document.body}
 						/>
 						<NumberControl
 							label={__("Offset", "sp-all-products")}
@@ -114,8 +122,8 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 						<SelectControl
 							label={__("Order by", "sp-all-products")}
-							value={orderBy}
-							onChange={(orderBy) => setAttributes({ orderBy })}
+							value={productOrderBy}
+							onChange={(productOrderBy) => setAttributes({ productOrderBy })}
 							options={[
 								{
 									value: "id",
@@ -133,8 +141,8 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 						<SelectControl
 							label={__("Order", "sp-all-products")}
-							value={order}
-							onChange={(order) => setAttributes({ order })}
+							value={productOrder}
+							onChange={(productOrder) => setAttributes({ productOrder })}
 							options={[
 								{
 									value: "ASC",
@@ -145,6 +153,18 @@ export default function Edit({ attributes, setAttributes }) {
 									label: "DESC",
 								},
 							]}
+						/>
+					</PanelBody>
+					<PanelBody title={__("Content Settings", "sp-all-products")}>
+						<ToggleControl
+							label="On Sale"
+							help={
+								toggleOnSale ? "Show On Sale badge." : "Hide On Sale badge."
+							}
+							checked={toggleOnSale}
+							onChange={() => {
+								setAttributes({ toggleOnSale: !toggleOnSale });
+							}}
 						/>
 					</PanelBody>
 				</Panel>
