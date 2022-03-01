@@ -43,7 +43,6 @@ export default function Edit({ attributes, setAttributes }) {
 		toggleAddToCart,
 	} = attributes;
 	const [categories, setCategories] = useState(null);
-	const [onSale, setOnSale] = useState(toggleOnSale);
 
 	const apiFetch = wp.apiFetch;
 	const { addQueryArgs } = wp.url;
@@ -164,6 +163,56 @@ export default function Edit({ attributes, setAttributes }) {
 							checked={toggleOnSale}
 							onChange={() => {
 								setAttributes({ toggleOnSale: !toggleOnSale });
+							}}
+						/>
+						<ToggleControl
+							label="Category"
+							help={
+								toggleCategory ? "Show Category." : "Hide Category."
+							}
+							checked={toggleCategory}
+							onChange={() => {
+								setAttributes({ toggleCategory: !toggleCategory });
+							}}
+						/>
+						<ToggleControl
+							label="Title"
+							help={
+								toggleTitle ? "Show Title." : "Hide Title."
+							}
+							checked={toggleTitle}
+							onChange={() => {
+								setAttributes({ toggleTitle: !toggleTitle });
+							}}
+						/>
+						<ToggleControl
+							label="Rating"
+							help={
+								toggleRating ? "Show Rating." : "Hide Rating."
+							}
+							checked={toggleRating}
+							onChange={() => {
+								setAttributes({ toggleRating: !toggleRating });
+							}}
+						/>
+						<ToggleControl
+							label="Price"
+							help={
+								togglePrice ? "Show Price." : "Hide Price."
+							}
+							checked={togglePrice}
+							onChange={() => {
+								setAttributes({ togglePrice: !togglePrice });
+							}}
+						/>
+						<ToggleControl
+							label="Add to Cart"
+							help={
+								toggleAddToCart ? "Show Add to Cart." : "Hide Add to Cart."
+							}
+							checked={toggleAddToCart}
+							onChange={() => {
+								setAttributes({ toggleAddToCart: !toggleAddToCart });
 							}}
 						/>
 					</PanelBody>
