@@ -13,7 +13,7 @@
 	"attributes": {
 		"layout": {
 			"type": "string",
-			"default": ""
+			"default": "grid"
 		},
 		"gridColumns": {
 			"type": "number",
@@ -52,6 +52,10 @@
 			"default": true
 		},
 		"toggleTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleDescription": {
 			"type": "boolean",
 			"default": true
 		},

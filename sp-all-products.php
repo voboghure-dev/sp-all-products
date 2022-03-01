@@ -55,46 +55,56 @@ add_filter( 'block_categories_all', 'store_press_block_categories' );
  * Render callback for product layout
  */
 function render_callback_product_layout( $attributes, $content ) {
-  // Get external products.
+  $layout = ( $attributes['layout'] == 'grid' ) ? 'product-view-grid' : 'product-view-list';
+
   $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
-  // log_it($limit);
-  $args = [
-    // 'type'  => 'product',
+  $args  = [
     'limit' => $limit,
     'order' => 'DESC',
   ];
   $products = wc_get_products( $args );
-  // log_it($products);
+
   ob_start();
-  echo '<style> :root { --item-size: ' . (int) $attributes['gridColumns'] . '; }</style>';
+  echo '<style>';
+  echo ':root { --item-size: ' . (int) $attributes['gridColumns'] . '; } ';
+  echo '.container .products { grid-gap: ' . $attributes['gridGap'] . 'px; } ';
+  echo '</style>';
   echo '<div class="container">';
-  echo '<ul class="products">';
+  echo '<ul class="products ' . $layout . '">';
   foreach ( $products as $product ) {
     echo '<li class="products__item">';
 
-    echo '<h3 class="product-title">';
-    echo $product->get_name();
-    echo '</h3>';
-
     echo '<div class="product-img">';
-    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'bundle_image'] );
+    echo $product->get_image( 'woocommerce_thumbnail' );
     echo '</div>';
 
-    echo '<p>';
-    echo $product->get_short_description();
-    echo '</p>';
+    echo '<div class="wrapper-content"><div class="content">';
 
-    echo '<h3 class="product-price">';
-    echo $product->get_price();
-    echo '</h3>';
+    if ( $attributes['toggleTitle'] ) {
+      echo '<h3 class="product-title">' . $product->get_name() . '</h3>';
+    }
 
-    echo '<div class="add-to-card"><a href="#">Add to Card</a></div>';
+    if ( $attributes['toggleDescription'] ) {
+      echo '<p>' . $product->get_short_description() . '</p>';
+    }
+
+    if ( $attributes['togglePrice'] ) {
+      echo '<h3 class="product-price">' . $product->get_price_html() . '</h3>';
+    }
+
+    if ( $attributes['toggleRating'] ) {
+      echo '<div>Review: ' . $product->get_average_rating() . '</div>';
+    }
+
+    if ( $attributes['toggleAddToCart'] ) {
+      echo '<div class="add-to-card"><a href="#">Add to Card</a></div>';
+    }
+    echo '</div></div>';
 
     echo '</li>';
   }
   echo '</ul>';
   echo '</div>';
-  // log_it($attributes);
   return ob_get_clean();
 }
 

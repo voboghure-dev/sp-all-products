@@ -1,12 +1,70 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.wp-block-create-block-sp-product {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+$border-color: lightblue;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+.products {
+  list-style: none;
+  display: grid;
+  &.product-view-list {
+    grid-template-columns: 1fr;
+    .products__item {
+      display: flex;
+      .product-img {
+        flex: 1 0 60%;
+        background-color: #fff;
+        display: grid;
+        place-items: center;
+      }
+      .wrapper-content {
+        padding-left: 20px;
+        display: grid;
+        place-items: center;
+        flex: 1 0 40%;
+      }
+    }
+  }
+  &.product-view-grid {
+    grid-template-columns: repeat(var(--item-size), 1fr);
+    .wrapper-content {
+      text-align: center;
+    }
+  }
+  &__item {
+    border: 1px solid $border-color;
+    .product-title {
+      margin: 15px 0;
+      color: coral;
+    }
+    .product-price {
+      padding-block: 15px;
+    }
+    .product-img {
+      img {
+        width: 100%;
+      }
+    }
+    .add-to-card {
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        text-decoration: none;
+        background-color: coral;
+        color: #fff;
+        border-radius: 5px;
+        &:hover {
+          background-color: darkgoldenrod;
+        }
+      }
+    }
+  }
 }

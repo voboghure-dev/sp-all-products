@@ -38,6 +38,7 @@ export default function Edit({ attributes, setAttributes }) {
 		toggleOnSale,
 		toggleCategory,
 		toggleTitle,
+		toggleDescription,
 		toggleRating,
 		togglePrice,
 		toggleAddToCart,
@@ -183,6 +184,16 @@ export default function Edit({ attributes, setAttributes }) {
 							checked={toggleTitle}
 							onChange={() => {
 								setAttributes({ toggleTitle: !toggleTitle });
+							}}
+						/>
+						<ToggleControl
+							label="Description"
+							help={
+								toggleDescription ? "Show Description." : "Hide Description."
+							}
+							checked={toggleDescription}
+							onChange={() => {
+								setAttributes({ toggleDescription: !toggleDescription });
 							}}
 						/>
 						<ToggleControl
