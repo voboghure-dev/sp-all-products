@@ -37,11 +37,11 @@
 		},
 		"productOrderBy": {
 			"type": "string",
-			"default": ""
+			"default": "id"
 		},
 		"productOrder": {
 			"type": "string",
-			"default": ""
+			"default": "ASC"
 		},
 		"toggleOnSale": {
 			"type": "boolean",

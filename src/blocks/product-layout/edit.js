@@ -137,6 +137,18 @@ export default function Edit({ attributes, setAttributes }) {
 									value: "name",
 									label: "Name",
 								},
+								{
+									value: "rand",
+									label: "Random",
+								},
+								{
+									value: "date",
+									label: "Date",
+								},
+								{
+									value: "modified",
+									label: "Modified",
+								},
 							]}
 						/>
 						<SelectControl

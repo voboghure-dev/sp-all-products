@@ -55,19 +55,61 @@ add_filter( 'block_categories_all', 'store_press_block_categories' );
  * Render callback for product layout
  */
 function render_callback_product_layout( $attributes, $content ) {
+  // Grid column
+  $columns = (int) $attributes['gridColumns'];
+
+  // Layout type (Grid, List)
   $layout = ( $attributes['layout'] == 'grid' ) ? 'product-view-grid' : 'product-view-list';
 
+  // Number of product (limit = Columns * Rows)
   $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
-  $args  = [
-    'limit' => $limit,
-    'order' => 'DESC',
+
+  // Grid gap by pixel
+  $gridGap = $attributes['gridGap'] . 'px;';
+
+  // Product categories
+  $tax_query = '';
+  if ( isset( $attributes['productCategories'] ) ) {
+    $productCategories = json_decode( $attributes['productCategories'] );
+    if ( ! empty( $productCategories ) ) {
+      foreach ( $productCategories as $cat ) {
+        $cat_id[] = $cat->value;
+      }
+      $tax_query = [
+        [
+          'taxonomy' => 'product_cat',
+          'field'    => 'term_id',
+          'terms'    => $cat_id,
+          'operator' => 'IN',
+        ],
+      ];
+    }
+  }
+
+  // Product offset
+  $offset = $attributes['productOffset'];
+
+  // Product order by
+  $order_by = $attributes['productOrderBy'];
+
+  // Product order
+  $order = $attributes['productOrder'];
+
+  // Get products using arguments
+  $args = [
+    'tax_query' => is_array( $tax_query ) ? $tax_query : null,
+    'offset'    => $offset,
+    'limit'     => $limit ? $limit : 0,
+    'orderby'   => $order_by ? $order_by : 'title',
+    'order'     => $order ? $order : 'ASC',
   ];
+  // log_it( $args );
   $products = wc_get_products( $args );
 
   ob_start();
   echo '<style>';
-  echo ':root { --item-size: ' . (int) $attributes['gridColumns'] . '; } ';
-  echo '.container .products { grid-gap: ' . $attributes['gridGap'] . 'px; } ';
+  echo ':root { --item-size: ' . $columns . '; } ';
+  echo '.container .products { grid-gap: ' . $gridGap . ' } ';
   echo '</style>';
   echo '<div class="container">';
   echo '<ul class="products ' . $layout . '">';
