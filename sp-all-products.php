@@ -112,12 +112,14 @@ function render_callback_product_layout( $attributes, $content ) {
   echo '.container .products { grid-gap: ' . $gridGap . ' } ';
   echo '</style>';
   echo '<div class="container">';
-  echo '<ul class="products ' . $layout . '">';
+  // echo '<ul class="products ' . $layout . '">';
+  echo '<ul class="products product-view-grid">';
   foreach ( $products as $product ) {
     echo '<li class="products__item">';
+    // <span class="sales">Sales</span> For sales tag
 
     echo '<div class="product-img">';
-    echo $product->get_image( 'woocommerce_thumbnail' );
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'product-img' ] );
     echo '</div>';
 
     echo '<div class="wrapper-content"><div class="content">';
