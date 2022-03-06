@@ -35,3 +35,4 @@ node_modules/
 # Custom ignore
 package-lock.json
 build/
+DOC/
