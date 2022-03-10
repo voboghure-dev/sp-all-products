@@ -14,17 +14,17 @@
  * @package           create-block
  */
 
-function store_press_sp_all_products_block_init() {
+function sp_all_products_block_init() {
   $blocks = [
-    'product-layout',
+    'product-grid',
   ];
 
   foreach ( $blocks as $block ) {
     // log_it( $block );
-    if ( $block == 'product-layout' ) {
+    if ( $block == 'product-grid' ) {
       register_block_type(
         plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block,
-        ['render_callback' => 'render_callback_product_layout']
+        ['render_callback' => 'render_callback_product_grid']
       );
     } else {
       register_block_type( plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block );
@@ -32,7 +32,7 @@ function store_press_sp_all_products_block_init() {
   }
 }
 
-add_action( 'init', 'store_press_sp_all_products_block_init' );
+add_action( 'init', 'sp_all_products_block_init' );
 
 /**
  * Create custom category
@@ -52,14 +52,11 @@ function store_press_block_categories( $block_categories ) {
 add_filter( 'block_categories_all', 'store_press_block_categories' );
 
 /**
- * Render callback for product layout
+ * Render callback for product grid
  */
-function render_callback_product_layout( $attributes, $content ) {
+function render_callback_product_grid( $attributes, $content ) {
   // Grid column
   $columns = (int) $attributes['gridColumns'];
-
-  // Layout type (Grid, List)
-  $layout = ( $attributes['layout'] == 'grid' ) ? 'product-view-grid' : 'product-view-list';
 
   // Number of product (limit = Columns * Rows)
   $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
@@ -112,7 +109,6 @@ function render_callback_product_layout( $attributes, $content ) {
   echo '.container .products { grid-gap: ' . $gridGap . ' } ';
   echo '</style>';
   echo '<div class="container">';
-  // echo '<ul class="products ' . $layout . '">';
   echo '<ul class="products product-view-grid">';
   foreach ( $products as $product ) {
     echo '<li class="products__item">';

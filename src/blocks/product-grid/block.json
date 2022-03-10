@@ -11,10 +11,6 @@
 		"html": false
 	},
 	"attributes": {
-		"layout": {
-			"type": "string",
-			"default": "grid"
-		},
 		"gridColumns": {
 			"type": "number",
 			"default": 2
@@ -73,7 +69,7 @@
 		}
 	},
 	"textdomain": "sp-all-products",
-	"editorScript": "file:../../../build/product-layout.js",
-	"editorStyle": "file:../../../build/product-layout.css",
-	"style": "file:../../../build/style-product-layout.css"
+	"editorScript": "file:../../../build/product-grid.js",
+	"editorStyle": "file:../../../build/product-grid.css",
+	"style": "file:../../../build/style-product-grid.css"
 }

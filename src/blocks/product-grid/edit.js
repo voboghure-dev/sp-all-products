@@ -5,14 +5,12 @@ import Select from "react-select";
 import { __ } from "@wordpress/i18n";
 import {
 	InspectorControls,
-	RichText,
 	useBlockProps,
 	BlockControls,
 } from "@wordpress/block-editor";
 import {
 	Panel,
 	PanelBody,
-	TextControl,
 	ToggleControl,
 	SelectControl,
 	RangeControl,
@@ -27,7 +25,6 @@ import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes }) {
 	const {
-		layout,
 		gridColumns,
 		gridRows,
 		gridGap,
@@ -66,23 +63,6 @@ export default function Edit({ attributes, setAttributes }) {
 		<>
 			<InspectorControls>
 				<Panel>
-					<PanelBody title={__("Layout Settings", "sp-all-products")}>
-						<SelectControl
-							label={__("Type", "sp-all-products")}
-							value={layout}
-							onChange={(layout) => setAttributes({ layout })}
-							options={[
-								{
-									value: "grid",
-									label: "Grid",
-								},
-								{
-									value: "list",
-									label: "List",
-								},
-							]}
-						/>
-					</PanelBody>
 					<PanelBody title={__("Product Grid", "sp-all-products")}>
 						<RangeControl
 							label="Columns"
