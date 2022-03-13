@@ -100,28 +100,33 @@ function render_callback_product_grid( $attributes, $content ) {
     'orderby'   => $order_by ? $order_by : 'title',
     'order'     => $order ? $order : 'ASC',
   ];
-  // log_it( $args );
+
   $products = wc_get_products( $args );
 
+	$custom_css = ':root { --item-size: ' . $columns . '; } ';
+  $custom_css .= '.container .products { grid-gap: ' . $gridGap . ' } ';
+	wp_add_inline_style( 'sp-handle', $custom_css );
+
   ob_start();
-  echo '<style>';
-  echo ':root { --item-size: ' . $columns . '; } ';
-  echo '.container .products { grid-gap: ' . $gridGap . ' } ';
-  echo '</style>';
-  echo '<div class="container">';
-  echo '<ul class="products product-view-grid">';
+  echo '<div class="sp-container">';
+  echo '<ul class="sp-products sp-product-view-grid">';
+  global $product;
   foreach ( $products as $product ) {
-    echo '<li class="products__item">';
-    // <span class="sales">Sales</span> For sales tag
+    echo '<li class="sp-products__item">';
+    // <span class="sp-sales">Sales</span> For sales tag
 
-    echo '<div class="product-img">';
-    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'product-img' ] );
-    echo '</div>';
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-product-img'] );
 
-    echo '<div class="wrapper-content"><div class="content">';
+    if ( $attributes['toggleCategory'] ) {
+      echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
+    }
 
     if ( $attributes['toggleTitle'] ) {
-      echo '<h3 class="product-title">' . $product->get_name() . '</h3>';
+      echo '<h2 class="sp-product-title">' . $product->get_name() . '</h2>';
+    }
+
+    if ( $attributes['toggleRating'] ) {
+      echo '<div>Review: ' . wc_get_template( 'single-product/rating.php' ) . '</div>';
     }
 
     if ( $attributes['toggleDescription'] ) {
@@ -129,17 +134,12 @@ function render_callback_product_grid( $attributes, $content ) {
     }
 
     if ( $attributes['togglePrice'] ) {
-      echo '<h3 class="product-price">' . $product->get_price_html() . '</h3>';
-    }
-
-    if ( $attributes['toggleRating'] ) {
-      echo '<div>Review: ' . $product->get_average_rating() . '</div>';
+      echo '<h3 class="sp-product-price">' . $product->get_price_html() . '</h3>';
     }
 
     if ( $attributes['toggleAddToCart'] ) {
-      echo '<div class="add-to-card"><a href="#">Add to Card</a></div>';
+      echo '<div class="sp-add-to-card"><a href="#">Add to Card</a></div>';
     }
-    echo '</div></div>';
 
     echo '</li>';
   }
@@ -147,6 +147,16 @@ function render_callback_product_grid( $attributes, $content ) {
   echo '</div>';
   return ob_get_clean();
 }
+
+/**
+ * Dummy handle for inject my custom style in head
+ */
+function custom_wp_head() {
+	wp_register_style( 'sp-handle', false );
+	wp_enqueue_style( 'sp-handle' );
+}
+
+add_action( 'wp_head', 'custom_wp_head' );
 
 /**
  * Debug log function to view any data in wp-content/debug.log
