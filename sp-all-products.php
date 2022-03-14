@@ -103,12 +103,8 @@ function render_callback_product_grid( $attributes, $content ) {
 
   $products = wc_get_products( $args );
 
-	$custom_css = ':root { --item-size: ' . $columns . '; } ';
-  $custom_css .= '.container .products { grid-gap: ' . $gridGap . ' } ';
-	wp_add_inline_style( 'sp-handle', $custom_css );
-
   ob_start();
-  echo '<div class="sp-container">';
+  echo '<div class="sp-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
   echo '<ul class="sp-products sp-product-view-grid">';
   global $product;
   foreach ( $products as $product ) {
@@ -147,16 +143,6 @@ function render_callback_product_grid( $attributes, $content ) {
   echo '</div>';
   return ob_get_clean();
 }
-
-/**
- * Dummy handle for inject my custom style in head
- */
-function custom_wp_head() {
-	wp_register_style( 'sp-handle', false );
-	wp_enqueue_style( 'sp-handle' );
-}
-
-add_action( 'wp_head', 'custom_wp_head' );
 
 /**
  * Debug log function to view any data in wp-content/debug.log
