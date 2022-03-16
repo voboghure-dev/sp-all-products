@@ -9,6 +9,12 @@
 	--grid-gap: 0;
 }
 
+.sp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
 .sp-products {
 	list-style: none;
 	display: grid;
@@ -16,7 +22,8 @@
 	text-align: center;
 
 	&.sp-product-view-grid {
-		grid-template-columns: repeat(var(--item-size), 1fr);
+		grid-template-columns: repeat(var(--item-size), minmax(0, 1fr));
+		overflow:auto;
 	}
 
 	&__item {
@@ -69,6 +76,7 @@
 			background-color: coral;
 			color: #fff;
 			border-radius: 5px;
+
 			&:hover {
 				background-color: darkgoldenrod;
 			}
