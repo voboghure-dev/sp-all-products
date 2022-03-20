@@ -6,6 +6,6 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry,
 		"product-grid": path.resolve(process.cwd(), "src/blocks/product-grid"),
-		// "product-list": path.resolve(process.cwd(), "src/blocks/product-list"),
+		"product-list": path.resolve(process.cwd(), "src/blocks/product-list"),
 	},
 };

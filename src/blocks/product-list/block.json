@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "store-press/sp-all-products-list",
+	"version": "1.0.0",
+	"title": "SP All Products - List",
+	"category": "sp-block-category",
+	"icon": "list-view",
+	"description": "All products (List) layout for StorePress.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"gridColumns": {
+			"type": "number",
+			"default": 2
+		},
+		"gridRows": {
+			"type": "number",
+			"default": 2
+		},
+		"gridGap": {
+			"type": "number",
+			"default": 10
+		},
+		"productCategories": {
+			"type": "string",
+			"default": null
+		},
+		"productOffset": {
+			"type": "number",
+			"default": 0
+		},
+		"productOrderBy": {
+			"type": "string",
+			"default": "id"
+		},
+		"productOrder": {
+			"type": "string",
+			"default": "ASC"
+		},
+		"toggleOnSale": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"togglePrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"toggleAddToCart": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "sp-all-products",
+	"editorScript": "file:../../../build/product-list.js",
+	"editorStyle": "file:../../../build/product-list.css",
+	"style": "file:../../../build/style-product-list.css"
+}
