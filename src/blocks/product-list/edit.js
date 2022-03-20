@@ -63,7 +63,7 @@ export default function Edit({ attributes, setAttributes }) {
 		<>
 			<InspectorControls>
 				<Panel>
-					<PanelBody title={__("Product Grid", "sp-all-products")}>
+					<PanelBody title={__("Product List", "sp-all-products")}>
 						<RangeControl
 							label="Columns"
 							value={gridColumns}

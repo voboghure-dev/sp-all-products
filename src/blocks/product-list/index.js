@@ -4,7 +4,7 @@ import './style.scss';
 
 import edit from './edit';
 
-registerBlockType('store-press/sp-all-products', {
+registerBlockType('store-press/sp-all-products-list', {
 
 	edit,
 

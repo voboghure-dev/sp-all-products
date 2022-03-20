@@ -1,11 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "store-press/sp-all-products",
+	"name": "store-press/sp-all-products-grid",
 	"version": "1.0.0",
-	"title": "SP All Products",
+	"title": "SP All Products - Grid",
 	"category": "sp-block-category",
-	"icon": "layout",
+	"icon": "grid-view",
 	"description": "All products layout for StorePress.",
 	"supports": {
 		"html": false

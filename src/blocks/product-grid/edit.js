@@ -234,7 +234,7 @@ export default function Edit({ attributes, setAttributes }) {
 				</BlockControls>
 
 				<ServerSideRender
-					block="store-press/sp-all-products"
+					block="store-press/sp-all-products-grid"
 					attributes={attributes}
 				/>
 			</div>

@@ -17,6 +17,7 @@
 function sp_all_products_block_init() {
   $blocks = [
     'product-grid',
+		'product-list',
   ];
 
   foreach ( $blocks as $block ) {
@@ -25,6 +26,11 @@ function sp_all_products_block_init() {
       register_block_type(
         plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block,
         ['render_callback' => 'render_callback_product_grid']
+      );
+    } else if ( $block == 'product-list' ) {
+      register_block_type(
+        plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block,
+        ['render_callback' => 'render_callback_product_list']
       );
     } else {
       register_block_type( plugin_dir_path( __FILE__ ) . 'src/blocks/' . $block );
