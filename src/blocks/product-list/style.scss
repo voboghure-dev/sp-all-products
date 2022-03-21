@@ -1,189 +1,65 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root {
-  --item-size: 0;
-	--grid-gap: 0;
-}
+$border-color: lightblue;
 
 .sp-container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   padding-top: 30px;
 }
 
-.sp-products {
-	list-style: none;
-	display: grid;
-	grid-gap: var(--grid-gap);
-	text-align: center;
+.sp-product-view-list {
+  list-style: none;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
 
-	&.sp-product-view-grid {
-		grid-template-columns: repeat(var(--item-size), minmax(0, 1fr));
-		overflow:auto;
-	}
+  .sp-products__item {
+    border: 1px solid $border-color;
+    display: flex;
 
-	&__item {
-		position: relative;
+    .sp-product-img {
+      flex: 1 0 60%;
+      background-color: #fff;
+      display: grid;
+      place-items: center;
+      img {
+        width: 100%;
+      }
+    }
 
-		.sp-sales {
-			position: absolute;
-			width: 70px;
-			height: 70px;
-			right: -15px;
-			top: -15px;
-			background-color: tomato;
-			border-radius: 100%;
-			display: grid;
-			place-items: center;
-			color: #fff;
-		}
+    .sp-wrapper-content {
+      flex: 1 0 40%;
+      padding-left: 20px;
+      display: grid;
+      place-items: center;
 
-		.sp-category {
-			color: rgb(207, 207, 207);
-			font-weight: 700;
-			margin-top: 10px;
-		}
+      .sp-product-title {
+        margin: 15px 0;
+        color: coral;
+      }
+      .sp-product-price {
+        padding-block: 15px;
+      }
 
-		.sp-product-title {
-			margin: 10px 0;
-			color: rgb(37, 40, 223);
-		}
-
-		.sp-star {
-			display: inline-block;
-			color: tomato;
-			font-size: 0;
-			margin-bottom: 10px;
-		}
-
-		.sp-product-price {
-			padding-block: 15px;
-		}
-
-		.sp-product-img {
-			width: 100%;
-		}
-
-		.sp-add-to-card {
-			display: inline-block;
-			padding: 10px 20px;
-			margin-bottom: 20px;
-			text-decoration: none;
-			background-color: coral;
-			color: #fff;
-			border-radius: 5px;
-
-			&:hover {
-				background-color: darkgoldenrod;
-			}
-		}
-	}
-}
-
-.form_filter {
-
-	.select_container {
-		text-align: right;
-		position: relative;
-
-		&::after {
-			content: "keyboard_arrow_down";
-			font-family: "material icons";
-			font-size: 20px;
-			color: #666;
-			position: absolute;
-			right: 10px;
-			top: 50%;
-			transform: translateY(-50%);
-			cursor: pointer;
-		}
-
-		select {
-			width: 200px;
-			height: 50px;
-			padding: 10px;
-			outline: none;
-			margin-left: auto;
-			font-size: 14px;
-			border: 2px dotted tomato;
-			background-color: antiquewhite;
-			appearance: none;
-			cursor: pointer;
-		}
-	}
-}
-
-/* Star rating for products */
-.rating-custom div.product .woocommerce-product-rating {
-	margin-bottom: 1.618em;
-}
-
-.rating-custom .woocommerce-product-rating .star-rating {
-	margin: 0.5em 4px 0 0;
-	float: left;
-}
-
-.rating-custom .woocommerce-product-rating::after,
-.rating-custom .woocommerce-product-rating::before {
-	content: " ";
-	display: table;
-}
-
-.rating-custom .woocommerce-product-rating {
-	line-height: 2;
-}
-
-.rating-custom .star-rating {
-	float: right;
-	overflow: hidden;
-	position: relative;
-	height: 1em;
-	line-height: 1;
-	font-size: 1em;
-	width: 5.4em;
-	font-family: star;
-}
-
-.rating-custom .star-rating::before {
-	content: "\73\73\73\73\73";
-	color: #d3ced2;
-	float: left;
-	top: 0;
-	left: 0;
-	position: absolute;
-}
-
-.rating-custom .star-rating {
-	line-height: 1;
-	font-size: 1em;
-	font-family: star;
-}
-
-.rating-custom .star-rating span {
-	overflow: hidden;
-	float: left;
-	top: 0;
-	left: 0;
-	position: absolute;
-	padding-top: 1.5em;
-}
-
-.rating-custom .star-rating span::before {
-	content: "\53\53\53\53\53";
-	top: 0;
-	position: absolute;
-	left: 0;
-}
-
-.rating-custom .star-rating span {
-	overflow: hidden;
-	float: left;
-	top: 0;
-	left: 0;
-	position: absolute;
-	padding-top: 1.5em;
+      .sp-add-to-card {
+        a {
+          display: inline-block;
+          padding: 10px 20px;
+          margin-bottom: 20px;
+          text-decoration: none;
+          background-color: coral;
+          color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background-color: darkgoldenrod;
+          }
+        }
+      }
+    }
+  }
 }
