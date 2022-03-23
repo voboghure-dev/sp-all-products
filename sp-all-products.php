@@ -110,43 +110,47 @@ function render_callback_product_grid( $attributes, $content ) {
   $products = wc_get_products( $args );
 
   ob_start();
-  echo '<div class="sp-grid-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
-  echo '<ul class="sp-grid-products-view">';
+  echo '<section class="sp-wrapper" style="--grid-item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
+  echo '<div class="sp-card-grid">';
   global $product;
   foreach ( $products as $product ) {
-    echo '<li class="sp-grid-products-view__item">';
-    // <span class="sp-grid-sales">Sales</span>
+    echo '<div class="sp-card-grid__item">';
+    // <span class="sp-card-grid__item__sale">Sales</span>
 
-    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-grid-product-img'] );
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-grid__item__image'] );
+
+		echo '<div class="sp-card-grid__item__content">';
 
     if ( $attributes['toggleCategory'] ) {
-      echo wc_get_product_category_list( $product->get_id(), ', ', '<p class="sp-grid-category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</p>' );
+      echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-grid__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
     }
 
     if ( $attributes['toggleTitle'] ) {
-      echo '<h2 class="sp-grid-product-title">' . $product->get_name() . '</h2>';
+      echo '<h3 class="sp-card-grid__item__content__title">' . $product->get_name() . '</h3>';
     }
 
     if ( $attributes['toggleRating'] ) {
-      echo '<span class="sp-grid-star">Review: ' . wc_get_template( 'single-product/rating.php' ) . '</span>';
+      echo '<span class="sp-card-grid__item__content__review">Review: ' . wc_get_template( 'single-product/rating.php' ) . '</span>';
     }
 
     if ( $attributes['toggleDescription'] ) {
-      echo '<p>' . $product->get_short_description() . '</p>';
+      echo '<p class="sp-card-grid__item__content__description">' . $product->get_short_description() . '</p>';
     }
 
     if ( $attributes['togglePrice'] ) {
-      echo '<h3 class="sp-grid-product-price">' . $product->get_price_html() . '</h3>';
+      echo '<span class="sp-card-grid__item__content__price">' . $product->get_price_html() . '</span>';
     }
 
     if ( $attributes['toggleAddToCart'] ) {
-      echo '<div class="sp-grid-add-card"><a href="#">Add to Card</a></div>';
+      echo '<a href="#" class="sp-card-grid__item__content__btn">Add to Card</a>';
     }
 
-    echo '</li>';
+		echo '</div>';
+
+    echo '</div>';
   }
-  echo '</ul>';
   echo '</div>';
+  echo '</section>';
   return ob_get_clean();
 }
 
