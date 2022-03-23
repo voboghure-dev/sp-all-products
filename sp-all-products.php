@@ -110,25 +110,25 @@ function render_callback_product_grid( $attributes, $content ) {
   $products = wc_get_products( $args );
 
   ob_start();
-  echo '<div class="sp-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
-  echo '<ul class="sp-products sp-product-view-grid">';
+  echo '<div class="sp-grid-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
+  echo '<ul class="sp-grid-products-view">';
   global $product;
   foreach ( $products as $product ) {
-    echo '<li class="sp-products__item">';
-    // <span class="sp-sales">Sales</span> For sales tag
+    echo '<li class="sp-grid-products-view__item">';
+    // <span class="sp-grid-sales">Sales</span>
 
-    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-product-img'] );
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-grid-product-img'] );
 
     if ( $attributes['toggleCategory'] ) {
-      echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
+      echo wc_get_product_category_list( $product->get_id(), ', ', '<p class="sp-grid-category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</p>' );
     }
 
     if ( $attributes['toggleTitle'] ) {
-      echo '<h2 class="sp-product-title">' . $product->get_name() . '</h2>';
+      echo '<h2 class="sp-grid-product-title">' . $product->get_name() . '</h2>';
     }
 
     if ( $attributes['toggleRating'] ) {
-      echo '<div>Review: ' . wc_get_template( 'single-product/rating.php' ) . '</div>';
+      echo '<span class="sp-grid-star">Review: ' . wc_get_template( 'single-product/rating.php' ) . '</span>';
     }
 
     if ( $attributes['toggleDescription'] ) {
@@ -136,11 +136,11 @@ function render_callback_product_grid( $attributes, $content ) {
     }
 
     if ( $attributes['togglePrice'] ) {
-      echo '<h3 class="sp-product-price">' . $product->get_price_html() . '</h3>';
+      echo '<h3 class="sp-grid-product-price">' . $product->get_price_html() . '</h3>';
     }
 
     if ( $attributes['toggleAddToCart'] ) {
-      echo '<div class="sp-add-to-card"><a href="#">Add to Card</a></div>';
+      echo '<div class="sp-grid-add-card"><a href="#">Add to Card</a></div>';
     }
 
     echo '</li>';
@@ -151,7 +151,7 @@ function render_callback_product_grid( $attributes, $content ) {
 }
 
 /**
- * Render callback for product grid
+ * Render callback for product list
  */
 function render_callback_product_list( $attributes, $content ) {
   // Grid column
@@ -203,16 +203,14 @@ function render_callback_product_list( $attributes, $content ) {
   $products = wc_get_products( $args );
 
   ob_start();
-  echo '<div class="sp-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
-  echo '<ul class="sp-product-view-list">';
+  echo '<div class="sp-grid-container" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
+  echo '<ul class="sp-grid-products-view">';
   global $product;
   foreach ( $products as $product ) {
-    echo '<li class="sp-products__item">';
-    // <span class="sp-sales">Sales</span> For sales tag
+    echo '<li class="sp-grid-products-view__item">';
+    // <span class="sp-grid-sales">Sales</span>
 
-		echo '<div class="sp-product-img">';
     echo $product->get_image( 'woocommerce_thumbnail' );
-		echo '</div>';
 
 		echo '<div class="sp-wrapper-content">';
 		echo '<div class="content">';

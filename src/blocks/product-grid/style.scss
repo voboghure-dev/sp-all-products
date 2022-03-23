@@ -1,121 +1,117 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 :root {
   --item-size: 0;
 	--grid-gap: 0;
 }
 
-.sp-container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$border-color: rgb(242, 0, 0);
+
+.sp-grid-container {
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 30px;
 }
 
-.sp-products {
-	list-style: none;
-	display: grid;
-	grid-gap: var(--grid-gap);
-	text-align: center;
+.sp-grid-products-view {
+  list-style: none;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(var(--item-size), 1fr);
+  text-align: center;
 
-	&.sp-product-view-grid {
-		grid-template-columns: repeat(var(--item-size), minmax(0, 1fr));
-		overflow:auto;
-	}
+  &__item {
+    position: relative;
+    border: 1px solid $border-color;
 
-	&__item {
-		position: relative;
+    .sp-grid-sales {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      right: -15px;
+      top: -15px;
+      background-color: tomato;
+      border-radius: 100%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
 
-		.sp-sales {
-			position: absolute;
-			width: 70px;
-			height: 70px;
-			right: -15px;
-			top: -15px;
-			background-color: tomato;
-			border-radius: 100%;
-			display: grid;
-			place-items: center;
-			color: #fff;
-		}
+    .sp-grid-category {
+      color: rgb(207, 207, 207);
+      font-weight: 700;
+      margin-top: 10px;
+    }
 
-		.sp-category {
-			color: rgb(207, 207, 207);
-			font-weight: 700;
-			margin-top: 10px;
-		}
+    .sp-grid-product-title {
+      margin: 10px 0;
+      color: rgb(37, 40, 223);
+    }
 
-		.sp-product-title {
-			margin: 10px 0;
-			color: rgb(37, 40, 223);
-		}
+    .sp-grid-star {
+      display: inline-block;
+      color: tomato;
+      font-size: 0;
+      margin-bottom: 10px;
+    }
 
-		.sp-star {
-			display: inline-block;
-			color: tomato;
-			font-size: 0;
-			margin-bottom: 10px;
-		}
+    .sp-grid-product-price {
+      padding-block: 15px;
+    }
 
-		.sp-product-price {
-			padding-block: 15px;
-		}
+    .sp-grid-product-img {
+      width: 100%;
+    }
 
-		.sp-product-img {
-			width: 100%;
-		}
+    .sp-grid-add-card {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      text-decoration: none;
+      background-color: coral;
+      color: #fff;
+      border-radius: 5px;
+      &:hover {
+        background-color: darkgoldenrod;
+      }
+    }
+  }
+}
+.form-filter {
+  .select-container {
+    text-align: right;
+    position: relative;
 
-		.sp-add-to-card {
-			display: inline-block;
-			padding: 10px 20px;
-			margin-bottom: 20px;
-			text-decoration: none;
-			background-color: coral;
-			color: #fff;
-			border-radius: 5px;
-
-			&:hover {
-				background-color: darkgoldenrod;
-			}
-		}
-	}
+    &::after {
+      content: 'keyboard_arrow_down';
+      font-family: 'material icons';
+      font-size: 20px;
+      color: #666;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    select {
+      width: 200px;
+      height: 50px;
+      padding: 10px;
+      outline: none;
+      margin-left: auto;
+      font-size: 14px;
+      border: 2px dotted tomato;
+      background-color: antiquewhite;
+      appearance: none;
+      cursor: pointer;
+    }
+  }
 }
 
-.form_filter {
-
-	.select_container {
-		text-align: right;
-		position: relative;
-
-		&::after {
-			content: "keyboard_arrow_down";
-			font-family: "material icons";
-			font-size: 20px;
-			color: #666;
-			position: absolute;
-			right: 10px;
-			top: 50%;
-			transform: translateY(-50%);
-			cursor: pointer;
-		}
-
-		select {
-			width: 200px;
-			height: 50px;
-			padding: 10px;
-			outline: none;
-			margin-left: auto;
-			font-size: 14px;
-			border: 2px dotted tomato;
-			background-color: antiquewhite;
-			appearance: none;
-			cursor: pointer;
-		}
-	}
-}
 
 /* Star rating for products */
 .rating-custom div.product .woocommerce-product-rating {
