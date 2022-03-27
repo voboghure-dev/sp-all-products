@@ -1,95 +1,94 @@
 :root {
-  --grid-item-size: 0;
+	--grid-item-size: 0;
 	--grid-gap: 10;
 }
 
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 .sp-wrapper {
-  width: 1400px;
-  margin: 0 auto;
-  padding-block: 20px;
+	max-width: 800px;
+	margin: 0 auto;
+	padding-block: 20px;
 }
 
 .sp-card-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-item-size), 1fr);
-  grid-gap: var(--grid-gap);
+	display: grid;
+	grid-template-columns: repeat(var(--grid-item-size), minmax(0, 1fr));
+	grid-gap: var(--grid-gap);
 
-  &__item {
-    position: relative;
-    border: 1px solid rgb(206, 206, 206);
+	&__item {
+		position: relative;
+		border: 1px solid rgb(206, 206, 206);
 
-    &__sale {
-      position: absolute;
-      top: -12px;
-      right: -12px;
-      width: 50px;
-      height: 50px;
-      background-color: tomato;
-      border-radius: 50%;
-      color: #fff;
-      display: grid;
-      place-items: center;
-    }
+		&__sale {
+			position: absolute;
+			top: -12px;
+			right: -12px;
+			width: 50px;
+			height: 50px;
+			background-color: tomato;
+			border-radius: 50%;
+			color: #fff;
+			display: grid;
+			place-items: center;
+		}
 
-    &__image {
-      width: 100%;
-    }
+		&__image {
+			width: 100%;
+		}
 
-    &__content {
-      text-align: center;
-      padding: 0 20px;
+		&__content {
+			text-align: center;
+			padding: 0 20px;
 
-      &__category {
-        display: block;
-        padding: 15px 0;
-        color: gray;
-      }
+			&__category {
+				display: block;
+				padding: 15px 0;
+				color: gray;
+			}
 
-      &__title {
-        padding-bottom: 15px;
-        color: green;
-      }
+			&__title {
+				padding-bottom: 15px;
+				color: green;
+			}
 
-      &__review {
-        display: block;
-        padding-bottom: 15px;
-        color: blue;
-      }
+			&__review {
+				display: block;
+				padding-bottom: 15px;
+				color: blue;
+			}
 
-      &__description {
-        color: gray;
-        padding-bottom: 15px;
-      }
+			&__description {
+				color: gray;
+				padding-bottom: 15px;
+			}
 
-      &__price {
-        display: block;
-        color: red;
-      }
+			&__price {
+				display: block;
+				color: red;
+			}
 
-      &__btn {
-        display: inline-block;
-        color: rgb(255, 255, 255);
-        background-color: red;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        margin: 10px 0;
+			&__btn {
+				display: inline-block;
+				color: rgb(255, 255, 255);
+				background-color: red;
+				padding: 10px 20px;
+				border-radius: 5px;
+				text-decoration: none;
+				margin: 10px 0;
 
-        &:hover {
-          background-color: tomato;
-        }
-      }
-    }
-  }
+				&:hover {
+					background-color: tomato;
+				}
+			}
+		}
+	}
 }
-
 
 /* Star rating for products */
 .rating-custom div.product .woocommerce-product-rating {
