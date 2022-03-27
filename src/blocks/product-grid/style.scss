@@ -61,6 +61,11 @@
 				display: block;
 				padding-bottom: 15px;
 				color: blue;
+				.woocommerce-product-rating {
+					.star-rating {
+						white-space: normal;
+					}
+				}
 			}
 
 			&__description {
