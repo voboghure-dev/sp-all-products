@@ -17,13 +17,18 @@
 /**
  * Check if WooCommerce dependency
  */
-if ( ! class_exists( 'WooCommerce' ) ) {
-  add_action( 'admin_notices', 'display_admin_notice' );
-  //Simple Call A Hook for Deactivate our plugin
-  require_once ABSPATH . 'wp-admin/includes/plugin.php';
-  deactivate_plugins( plugin_basename( __FILE__ ) );
-  return;
+function woocommerce_loaded() {
+  if ( ! class_exists( 'WooCommerce' ) ) {
+    error_log( 'test' );
+    add_action( 'admin_notices', 'display_admin_notice' );
+    //Simple Call A Hook for Deactivate our plugin
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    deactivate_plugins( plugin_basename( __FILE__ ) );
+    return;
+  }
 }
+
+add_action( 'plugins_loaded', 'woocommerce_loaded' );
 
 /**
  * Display an error message when dependent plugin is missing
@@ -36,7 +41,7 @@ function display_admin_notice() {
 			Please activate these <a href="plugins.php">plugin</a>.', 'sp-all-products' );
   echo '</p>';
   echo '</div>';
-  echo '<div class="updated notice is-dismissible"><p>' . _e( 'Plugin deactivated.', 'sp-all-products' ) . '</p></div>';
+  echo '<div class="updated notice is-dismissible"><p>' . __( 'Plugin deactivated.', 'sp-all-products' ) . '</p></div>';
 }
 
 function sp_all_products_block_init() {
