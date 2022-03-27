@@ -160,7 +160,9 @@ function render_callback_product_grid( $attributes, $content ) {
     }
 
     if ( $attributes['toggleRating'] ) {
-      echo '<span class="sp-card-grid__item__content__review">Review: ' . wc_get_template( 'single-product/rating.php' ) . '</span>';
+      echo '<div class="sp-card-grid__item__content__review">Review: ';
+			wc_get_template( 'single-product/rating.php' );
+			echo '</div>';
     }
 
     if ( $attributes['toggleDescription'] ) {
