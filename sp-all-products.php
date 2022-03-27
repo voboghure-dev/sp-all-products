@@ -14,10 +14,35 @@
  * @package           create-block
  */
 
+/**
+ * Check if WooCommerce dependency
+ */
+if ( ! class_exists( 'WooCommerce' ) ) {
+  add_action( 'admin_notices', 'display_admin_notice' );
+  //Simple Call A Hook for Deactivate our plugin
+  require_once ABSPATH . 'wp-admin/includes/plugin.php';
+  deactivate_plugins( plugin_basename( __FILE__ ) );
+  return;
+}
+
+/**
+ * Display an error message when dependent plugin is missing
+ */
+function display_admin_notice() {
+  echo '<div class="error notice">';
+  echo '<p>';
+  _e( '<strong>Error:</strong>', 'sp-all-products' );
+  _e( 'The <em>SP All Products</em> plugin won\'t execute because the following required plugin is not active: <em>WooCommerce</em>.
+			Please activate these <a href="plugins.php">plugin</a>.', 'sp-all-products' );
+  echo '</p>';
+  echo '</div>';
+  echo '<div class="updated notice is-dismissible"><p>' . _e( 'Plugin deactivated.', 'sp-all-products' ) . '</p></div>';
+}
+
 function sp_all_products_block_init() {
   $blocks = [
     'product-grid',
-		'product-list',
+    'product-list',
   ];
 
   foreach ( $blocks as $block ) {
@@ -119,7 +144,7 @@ function render_callback_product_grid( $attributes, $content ) {
 
     echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-grid__item__image'] );
 
-		echo '<div class="sp-card-grid__item__content">';
+    echo '<div class="sp-card-grid__item__content">';
 
     if ( $attributes['toggleCategory'] ) {
       echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-grid__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
@@ -145,7 +170,7 @@ function render_callback_product_grid( $attributes, $content ) {
       echo '<a href="#" class="sp-card-grid__item__content__btn">Add to Card</a>';
     }
 
-		echo '</div>';
+    echo '</div>';
 
     echo '</div>';
   }
@@ -216,8 +241,8 @@ function render_callback_product_list( $attributes, $content ) {
 
     echo $product->get_image( 'woocommerce_thumbnail' );
 
-		echo '<div class="sp-wrapper-content">';
-		echo '<div class="content">';
+    echo '<div class="sp-wrapper-content">';
+    echo '<div class="content">';
 
     if ( $attributes['toggleTitle'] ) {
       echo '<h3 class="sp-product-title">' . $product->get_name() . '</h3>';
@@ -234,8 +259,8 @@ function render_callback_product_list( $attributes, $content ) {
     if ( $attributes['toggleAddToCart'] ) {
       echo '<div class="sp-add-to-card"><a href="#">Add to Card</a></div>';
     }
-		echo '</div>';
-		echo '</div>';
+    echo '</div>';
+    echo '</div>';
     echo '</li>';
   }
   echo '</ul>';
