@@ -70,6 +70,19 @@ function sp_all_products_block_init() {
 add_action( 'init', 'sp_all_products_block_init' );
 
 /**
+ * Enqueue css for theme support
+ */
+function theme_support_styles() {
+	$dir = __DIR__;
+  wp_enqueue_style(
+    'sp-theme-support',
+    plugins_url( 'theme-support.css', __FILE__ ), '', filemtime( $dir . '/theme-support.css' )
+  );
+}
+
+add_action( 'wp_enqueue_scripts', 'theme_support_styles' );
+
+/**
  * Create custom category
  */
 function store_press_block_categories( $block_categories ) {
@@ -154,15 +167,15 @@ function render_callback_product_grid( $attributes, $content ) {
       echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-grid__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
     }
 
-		$permalink = $product->get_permalink();
+    $permalink = $product->get_permalink();
     if ( $attributes['toggleTitle'] ) {
       echo '<a href="' . $permalink . '" alt="' . $product->get_name() . '"><h3 class="sp-card-grid__item__content__title">' . $product->get_name() . '</h3></a>';
     }
 
     if ( $attributes['toggleRating'] ) {
       echo '<div class="sp-card-grid__item__content__review">';
-			wc_get_template( 'single-product/rating.php' );
-			echo '</div>';
+      wc_get_template( 'single-product/rating.php' );
+      echo '</div>';
     }
 
     if ( $attributes['toggleDescription'] ) {
@@ -242,26 +255,26 @@ function render_callback_product_list( $attributes, $content ) {
     echo '<div class="sp-card-list__item">';
     // <span class="sp-card-list__item__sale">Sales</span>
 
-		echo '<div class="sp-card-list__item__images">';
+    echo '<div class="sp-card-list__item__images">';
     echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-list__item__images__image'] );
-		echo '</div>';
+    echo '</div>';
 
     echo '<div class="sp-card-list__item__content">';
     echo '<div class="sp-card-list__item__content__item">';
 
-		if ( $attributes['toggleCategory'] ) {
+    if ( $attributes['toggleCategory'] ) {
       echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-list__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
     }
 
-		$permalink = $product->get_permalink();
+    $permalink = $product->get_permalink();
     if ( $attributes['toggleTitle'] ) {
       echo '<a href="' . $permalink . '" alt="' . $product->get_name() . '"><h3 class="sp-card-list__item__content__title">' . $product->get_name() . '</h3></a>';
     }
 
-		if ( $attributes['toggleRating'] ) {
+    if ( $attributes['toggleRating'] ) {
       echo '<div class="sp-card-list__item__content__review">';
-			wc_get_template( 'single-product/rating.php' );
-			echo '</div>';
+      wc_get_template( 'single-product/rating.php' );
+      echo '</div>';
     }
 
     if ( $attributes['toggleDescription'] ) {
