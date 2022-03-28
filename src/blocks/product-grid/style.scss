@@ -55,7 +55,6 @@
 			&__review {
 				display: block;
 				padding-bottom: 15px;
-				color: blue;
 				.woocommerce-product-rating {
 					.star-rating {
 						white-space: normal;
@@ -91,26 +90,26 @@
 }
 
 /* Star rating for products */
-.rating-custom div.product .woocommerce-product-rating {
+.woocommerce-product-rating {
 	margin-bottom: 1.618em;
 }
 
-.rating-custom .woocommerce-product-rating .star-rating {
+.woocommerce-product-rating .star-rating {
 	margin: 0.5em 4px 0 0;
 	float: left;
 }
 
-.rating-custom .woocommerce-product-rating::after,
-.rating-custom .woocommerce-product-rating::before {
+.woocommerce-product-rating::after,
+.woocommerce-product-rating::before {
 	content: " ";
 	display: table;
 }
 
-.rating-custom .woocommerce-product-rating {
+.woocommerce-product-rating {
 	line-height: 2;
 }
 
-.rating-custom .star-rating {
+.star-rating {
 	float: right;
 	overflow: hidden;
 	position: relative;
@@ -121,7 +120,7 @@
 	font-family: star;
 }
 
-.rating-custom .star-rating::before {
+.star-rating::before {
 	content: "\73\73\73\73\73";
 	color: #d3ced2;
 	float: left;
@@ -130,13 +129,13 @@
 	position: absolute;
 }
 
-.rating-custom .star-rating {
+.star-rating {
 	line-height: 1;
 	font-size: 1em;
 	font-family: star;
 }
 
-.rating-custom .star-rating span {
+.star-rating span {
 	overflow: hidden;
 	float: left;
 	top: 0;
@@ -145,14 +144,14 @@
 	padding-top: 1.5em;
 }
 
-.rating-custom .star-rating span::before {
+.star-rating span::before {
 	content: "\53\53\53\53\53";
 	top: 0;
 	position: absolute;
 	left: 0;
 }
 
-.rating-custom .star-rating span {
+.star-rating span {
 	overflow: hidden;
 	float: left;
 	top: 0;

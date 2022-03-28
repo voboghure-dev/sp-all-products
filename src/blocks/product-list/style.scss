@@ -59,7 +59,6 @@
 			&__review {
 				display: block;
 				padding-bottom: 15px;
-				color: blue;
 				.woocommerce-product-rating {
 					.star-rating {
 						white-space: normal;
@@ -92,4 +91,87 @@
 			}
 		}
 	}
+}
+
+/* Star rating for products */
+@font-face {
+	font-family: 'star';
+	src: url('../../../fonts/star.eot');
+	src: url('../../../fonts/star.eot?#iefix') format('embedded-opentype'),
+			url('../../../fonts/star.woff') format('woff'),
+			url('../../../fonts/star.ttf') format('truetype'),
+			url('../../../fonts/star.svg#star') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.woocommerce-product-rating {
+	margin-bottom: 1.618em;
+}
+
+.woocommerce-product-rating .star-rating {
+	margin: 0.5em 4px 0 0;
+	float: left;
+}
+
+.woocommerce-product-rating::after,
+.woocommerce-product-rating::before {
+	content: " ";
+	display: table;
+}
+
+.woocommerce-product-rating {
+	line-height: 2;
+}
+
+.star-rating {
+	float: right;
+	overflow: hidden;
+	position: relative;
+	height: 1em;
+	line-height: 1;
+	font-size: 1em;
+	width: 5.4em;
+	font-family: star;
+}
+
+.star-rating::before {
+	content: "\73\73\73\73\73";
+	color: #d3ced2;
+	float: left;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.star-rating {
+	line-height: 1;
+	font-size: 1em;
+	font-family: star;
+}
+
+.star-rating span {
+	font-family:star !important;
+	overflow: hidden;
+	float: left;
+	top: 0;
+	left: 0;
+	position: absolute;
+	padding-top: 1.5em;
+}
+
+.star-rating span::before {
+	content: "\53\53\53\53\53";
+	top: 0;
+	position: absolute;
+	left: 0;
+}
+
+.star-rating span {
+	overflow: hidden;
+	float: left;
+	top: 0;
+	left: 0;
+	position: absolute;
+	padding-top: 1.5em;
 }
