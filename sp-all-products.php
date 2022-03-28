@@ -160,7 +160,7 @@ function render_callback_product_grid( $attributes, $content ) {
     }
 
     if ( $attributes['toggleRating'] ) {
-      echo '<div class="sp-card-grid__item__content__review">Review: ';
+      echo '<div class="sp-card-grid__item__content__review">';
 			wc_get_template( 'single-product/rating.php' );
 			echo '</div>';
     }
