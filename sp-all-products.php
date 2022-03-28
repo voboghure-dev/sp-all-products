@@ -83,6 +83,19 @@ function theme_support_styles() {
 add_action( 'wp_enqueue_scripts', 'theme_support_styles' );
 
 /**
+ * Custom class name added to body tag
+ */
+function add_custom_theme_class() {
+	$theme_slug = get_stylesheet();
+	$body_class = 'sp-' . $theme_slug;
+	$classes[] = $body_class;
+
+	return $classes;
+}
+
+add_action( 'body_class', 'add_custom_theme_class' );
+
+/**
  * Create custom category
  */
 function store_press_block_categories( $block_categories ) {
