@@ -11,11 +11,7 @@
 		"html": false
 	},
 	"attributes": {
-		"gridColumns": {
-			"type": "number",
-			"default": 2
-		},
-		"gridRows": {
+		"numberOfItem": {
 			"type": "number",
 			"default": 2
 		},

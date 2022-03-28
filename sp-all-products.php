@@ -15,13 +15,12 @@
  */
 
 /**
- * Check if WooCommerce dependency
+ * Check WooCommerce dependency
  */
 function woocommerce_loaded() {
   if ( ! class_exists( 'WooCommerce' ) ) {
-    error_log( 'test' );
     add_action( 'admin_notices', 'display_admin_notice' );
-    //Simple Call A Hook for Deactivate our plugin
+    // Simple Call A Hook for Deactivate our plugin
     require_once ABSPATH . 'wp-admin/includes/plugin.php';
     deactivate_plugins( plugin_basename( __FILE__ ) );
     return;
@@ -31,7 +30,7 @@ function woocommerce_loaded() {
 add_action( 'plugins_loaded', 'woocommerce_loaded' );
 
 /**
- * Display an error message when dependent plugin is missing
+ * Display an error message when dependency is missing
  */
 function display_admin_notice() {
   echo '<div class="error notice">';
@@ -41,7 +40,7 @@ function display_admin_notice() {
 			Please activate these <a href="plugins.php">plugin</a>.', 'sp-all-products' );
   echo '</p>';
   echo '</div>';
-  echo '<div class="updated notice is-dismissible"><p>' . __( 'Plugin deactivated.', 'sp-all-products' ) . '</p></div>';
+  echo '<div class="updated notice is-dismissible"><p>' . __( 'The <em>SP All Products</em> plugin deactivated.', 'sp-all-products' ) . '</p></div>';
 }
 
 function sp_all_products_block_init() {
@@ -131,7 +130,7 @@ function render_callback_product_grid( $attributes, $content ) {
   // Get products using arguments
   $args = [
     'tax_query' => is_array( $tax_query ) ? $tax_query : null,
-    'offset'    => $offset,
+    'offset'    => $offset ? $offset : 0,
     'limit'     => $limit ? $limit : 0,
     'orderby'   => $order_by ? $order_by : 'title',
     'order'     => $order ? $order : 'ASC',
@@ -155,8 +154,9 @@ function render_callback_product_grid( $attributes, $content ) {
       echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-grid__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
     }
 
+		$permalink = $product->get_permalink();
     if ( $attributes['toggleTitle'] ) {
-      echo '<h3 class="sp-card-grid__item__content__title">' . $product->get_name() . '</h3>';
+      echo '<a href="' . $permalink . '" alt="' . $product->get_name() . '"><h3 class="sp-card-grid__item__content__title">' . $product->get_name() . '</h3></a>';
     }
 
     if ( $attributes['toggleRating'] ) {
@@ -178,7 +178,6 @@ function render_callback_product_grid( $attributes, $content ) {
     }
 
     echo '</div>';
-
     echo '</div>';
   }
   echo '</div>';
@@ -190,11 +189,8 @@ function render_callback_product_grid( $attributes, $content ) {
  * Render callback for product list
  */
 function render_callback_product_list( $attributes, $content ) {
-  // Grid column
-  $columns = (int) $attributes['gridColumns'];
-
-  // Number of product (limit = Columns * Rows)
-  $limit = (int) $attributes['gridColumns'] * (int) $attributes['gridRows'];
+  // Number of product
+  $limit = (int) $attributes['numberOfItem'];
 
   // Grid gap by pixel
   $gridGap = $attributes['gridGap'] . 'px;';
@@ -230,7 +226,7 @@ function render_callback_product_list( $attributes, $content ) {
   // Get products using arguments
   $args = [
     'tax_query' => is_array( $tax_query ) ? $tax_query : null,
-    'offset'    => $offset,
+    'offset'    => $offset ? $offset : 0,
     'limit'     => $limit ? $limit : 0,
     'orderby'   => $order_by ? $order_by : 'title',
     'order'     => $order ? $order : 'ASC',
@@ -239,7 +235,7 @@ function render_callback_product_list( $attributes, $content ) {
   $products = wc_get_products( $args );
 
   ob_start();
-  echo '<section class="sp-wrapper" style="--item-size: ' . $columns . '; --grid-gap: ' . $gridGap . '">';
+  echo '<section style="--grid-gap: ' . $gridGap . '">';
   echo '<div class="sp-card-list">';
   global $product;
   foreach ( $products as $product ) {
@@ -257,12 +253,13 @@ function render_callback_product_list( $attributes, $content ) {
       echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="sp-card-list__item__content__category">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'sp-all-products' ) . ' ', '</span>' );
     }
 
+		$permalink = $product->get_permalink();
     if ( $attributes['toggleTitle'] ) {
-      echo '<h3 class="sp-card-list__item__content__title">' . $product->get_name() . '</h3>';
+      echo '<a href="' . $permalink . '" alt="' . $product->get_name() . '"><h3 class="sp-card-list__item__content__title">' . $product->get_name() . '</h3></a>';
     }
 
 		if ( $attributes['toggleRating'] ) {
-      echo '<div class="sp-card-list__item__content__review">Review: ';
+      echo '<div class="sp-card-list__item__content__review">';
 			wc_get_template( 'single-product/rating.php' );
 			echo '</div>';
     }

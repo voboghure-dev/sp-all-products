@@ -1,5 +1,4 @@
 :root {
-	--grid-item-size: 0;
 	--grid-gap: 10;
 }
 
@@ -10,16 +9,10 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-.sp-wrapper {
-	width: 1400px;
-	margin: 0 auto;
-	padding-block: 20px;
-}
 
 .sp-card-list {
 	display: grid;
-	grid-template-columns: repeat(var(--list-item-size), minmax(0, 1fr));
-	grid-gap: 15px;
+	grid-gap: var(--grid-gap);
 
 	&__item {
 		position: relative;
@@ -43,12 +36,6 @@
 			flex: 0 0 50%;
 			display: grid;
 			place-items: center;
-
-			// &__image {
-			// 	width: 100%;
-			// 	height: 100%;
-			// 	object-fit: cover;
-			// }
 		}
 
 		&__content {
@@ -106,9 +93,3 @@
 		}
 	}
 }
-
-// .block-editor__container img {
-// 	max-width: 100%;
-// 	height: 100%;
-// 	// object-fit: cover;
-// }
