@@ -36,6 +36,11 @@
 			flex: 0 0 50%;
 			display: grid;
 			place-items: center;
+
+			&__image {
+				width: 100%;
+				object-fit: contain;
+			}
 		}
 
 		&__content {
