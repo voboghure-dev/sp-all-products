@@ -65,14 +65,14 @@ export default function Edit({ attributes, setAttributes }) {
 				<Panel>
 					<PanelBody title={__("Product Grid", "sp-all-products")}>
 						<RangeControl
-							label="Columns"
+							label={__("Columns", "sp-all-products")}
 							value={gridColumns}
 							onChange={(gridColumns) => setAttributes({ gridColumns })}
 							min={1}
 							max={8}
 						/>
 						<RangeControl
-							label="Rows"
+							label={__("Rows", "sp-all-products")}
 							value={gridRows}
 							onChange={(gridRows) => setAttributes({ gridRows })}
 							min={1}
@@ -149,7 +149,7 @@ export default function Edit({ attributes, setAttributes }) {
 					</PanelBody>
 					<PanelBody title={__("Content Settings", "sp-all-products")}>
 						<ToggleControl
-							label="On Sale"
+							label={__("On Sale", "sp-all-products")}
 							help={
 								toggleOnSale ? "Show On Sale badge." : "Hide On Sale badge."
 							}
@@ -159,7 +159,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Category"
+							label={__("Category", "sp-all-products")}
 							help={
 								toggleCategory ? "Show Category." : "Hide Category."
 							}
@@ -169,7 +169,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Title"
+							label={__("Title", "sp-all-products")}
 							help={
 								toggleTitle ? "Show Title." : "Hide Title."
 							}
@@ -179,7 +179,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Description"
+							label={__("Description", "sp-all-products")}
 							help={
 								toggleDescription ? "Show Description." : "Hide Description."
 							}
@@ -189,7 +189,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Rating"
+							label={__("Rating", "sp-all-products")}
 							help={
 								toggleRating ? "Show Rating." : "Hide Rating."
 							}
@@ -199,7 +199,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Price"
+							label={__("Price", "sp-all-products")}
 							help={
 								togglePrice ? "Show Price." : "Hide Price."
 							}
@@ -209,7 +209,7 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 						<ToggleControl
-							label="Add to Cart"
+							label={__("Add to Cart", "sp-all-products")}
 							help={
 								toggleAddToCart ? "Show Add to Cart." : "Hide Add to Cart."
 							}
@@ -226,7 +226,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<BlockControls>
 					<ToolbarButton
 						icon={edit}
-						label="Edit"
+						label={__("Edit", "sp-all-products")}
 						onClick={() =>
 							alert("It will hide layout view and open single product view")
 						}

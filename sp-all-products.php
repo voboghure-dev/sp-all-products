@@ -172,7 +172,9 @@ function render_callback_product_grid( $attributes, $content ) {
     echo '<div class="sp-card-grid__item">';
     // <span class="sp-card-grid__item__sale">Sales</span>
 
-    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-grid__item__image'] );
+		echo '<div class="sp-card-grid__item__images">';
+    echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-grid__item__images__image'] );
+		echo '</div>';
 
     echo '<div class="sp-card-grid__item__content">';
 
