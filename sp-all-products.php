@@ -172,9 +172,9 @@ function render_callback_product_grid( $attributes, $content ) {
     echo '<div class="sp-card-grid__item">';
     // <span class="sp-card-grid__item__sale">Sales</span>
 
-		echo '<div class="sp-card-grid__item__images">';
+		echo '<figure class="sp-card-grid__item__images">';
     echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-grid__item__images__image'] );
-		echo '</div>';
+		echo '</figure>';
 
     echo '<div class="sp-card-grid__item__content">';
 
@@ -270,9 +270,9 @@ function render_callback_product_list( $attributes, $content ) {
     echo '<div class="sp-card-list__item">';
     // <span class="sp-card-list__item__sale">Sales</span>
 
-    echo '<div class="sp-card-list__item__images">';
+    echo '<figure class="sp-card-list__item__images">';
     echo $product->get_image( 'woocommerce_thumbnail', ['class' => 'sp-card-list__item__images__image'] );
-    echo '</div>';
+    echo '</figure>';
 
     echo '<div class="sp-card-list__item__content">';
     echo '<div class="sp-card-list__item__content__item">';
